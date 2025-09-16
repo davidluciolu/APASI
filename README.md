@@ -51,5 +51,13 @@ Coming soon...
 If you find our model/code/data/paper helpful, please consider cite our papers 📝 and star us ⭐️！
 
 ```bibtex
-bibtex here
+@misc{lu2025mitigatinghallucinationslargevisionlanguage,
+      title={Mitigating Hallucinations in Large Vision-Language Models by Self-Injecting Hallucinations}, 
+      author={Yifan Lu and Ziqi Zhang and Chunfeng Yuan and Jun Gao and Congxuan Zhang and Xiaojuan Qi and Bing Li and Weiming Hu},
+      year={2025},
+      eprint={2509.11287},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2509.11287}, 
+}
 ```
