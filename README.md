@@ -29,23 +29,58 @@ The models are trained with SI-23k and SI-130k, named `APASI-Base-7B` and `APASI
 
 To use the model, please follow the [code](https://github.com/haotian-liu/LLaVA/blob/main/scripts/merge_lora_weights.py) in LLaVA's official repo.
 
-## Code
-Coming soon...
+## Install
+1. clone this repo
+```
+git clone https://github.com/davidluciolu/APASI.git
+cd APASI
+```
+2. Create a conda environment and install the dependencies
+```
+conda create -n llava python=3.10 -y
+conda activate llava
+pip install --upgrade pip 
+pip install -e ".[train]"
+pip install flash-attn --no-build-isolation
+pip install nltk 
+```
 
-[//]: # (## Install)
+## Data Preparation
+1. Download the images from the COCO and VG dataset, put them into `./playground/data`
+2. Download the [SI-Dataset](https://huggingface.co/datasets/lucio36/APASI-SI-dataset) and make a directory under `./playground/data/neg_data`
+```
+cd ./playground/data/neg_data/
+mkdir detail_23k_llava-v1.5-7b_gen_llava-v1.5-7b_lvis_guide_replace_0.2_1_skip1_num1
+cd detail_23k_llava-v1.5-7b_gen_llava-v1.5-7b_lvis_guide_replace_0.2_1_skip1_num1
+mv [downloaded SI-23k parquet] detail_23k_llava-v1.5-7b_gen_llava-v1.5-7b_iter_0.parquet
+```
+3. If you want to prepare the SI data from LLaVA `detail-23k`, run the scripts
+```
+bash scripts/rl/make_data.sh
+```
 
-[//]: # ()
-[//]: # (## Data Preparation)
+## Train
+1. Run the scripts:
+```
+# just run dpo training
+bash scripts/rl/dpo.sh
 
-[//]: # ()
-[//]: # (## Train)
+# make data + dpo
+bash scripts/rl/all_in_one.sh
+```
 
-[//]: # ()
-[//]: # (## Inference)
+## Inference and Evaluation
+1. Prepare the evaluation benchmark data following the instructions in [LLaVA](https://github.com/haotian-liu/LLaVA/blob/main/docs/Evaluation.md). 
+For Object-Hal (CHAIR) evaluation, we use the sampled 500 images following [OPERA](https://github.com/shikiw/OPERA).
+2. Run the script:
+```
+bash scripts/rl/eval_all.sh
+```
 
 ## Acknowledgement
 - [LLaVA](https://github.com/haotian-liu/LLaVA): The baseline model for this work.
 - [RLHF-V](https://github.com/RLHF-V/RLHF-V): We followed the DPO code in this repo for training.
+- [OPERA](https://github.com/shikiw/OPERA): We follow the Object-Hal evaluation in this repo.
 
 ## Citation
 If you find our model/code/data/paper helpful, please consider cite our papers 📝 and star us ⭐️！
