@@ -25,7 +25,7 @@ The scaled-up **SI-130k** is constructed by adding unannotated images from the V
 ## APASI Model Weight
 We release the [LoRA adaptation weights](https://huggingface.co/collections/lucio36/apasi-model-68c52dfb1103aba8c675a756)
 of APASI based on [LLaVA-v1.5-7B](https://huggingface.co/liuhaotian/llava-v1.5-7b). 
-The models are trained with SI-23k and SI-130k, named `APASI-Base-7B` and `APASI-Scaled-7B`, respectively.
+The models are trained with SI-23k and SI-130k, named `APASI-Base-7B` and `APASI-Scaled-Scaled`, respectively.
 
 To use the model, please follow the [code](https://github.com/haotian-liu/LLaVA/blob/main/scripts/merge_lora_weights.py) in LLaVA's official repo.
 
